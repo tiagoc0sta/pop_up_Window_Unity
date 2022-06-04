@@ -7,6 +7,8 @@ using UnityEngine.Events;
 namespace EasyUI.Dialogs
 {
 
+
+
     public class Dialog
     {
         public string Title = "Title";
@@ -20,6 +22,7 @@ namespace EasyUI.Dialogs
         [SerializeField] Text titleUIText;
         [SerializeField] Text messageUIText;
         [SerializeField] Button closeUIButton;
+        [SerializeField] Button continueUIButton;
 
         Dialog dialog = new Dialog();
 
@@ -33,6 +36,10 @@ namespace EasyUI.Dialogs
             //Add close event listener
             closeUIButton.onClick.RemoveAllListeners();
             closeUIButton.onClick.AddListener(Hide);
+
+            //Add continue event listener
+            continueUIButton.onClick.RemoveAllListeners();
+            continueUIButton.onClick.AddListener(OpenWebSite);
         }
 
         //Set Dialog Title
@@ -56,6 +63,16 @@ namespace EasyUI.Dialogs
             return Instance;
         }
 
+
+        public DialogUI OnContinue(UnityAction action)
+        {
+            dialog.OnClose = action;
+            return Instance;
+        }
+
+
+
+
         //Show dialog
         public void Show ()
         {
@@ -78,6 +95,14 @@ namespace EasyUI.Dialogs
             //Reset Dialog
             dialog = new Dialog();
         }
+
+
+        public void OpenWebSite()
+        {
+            Application.OpenURL("https://helpusdefend.com/");
+            Debug.Log("Web Browser openned on HelpUsDefend page! :-)");
+        }
+       
     }
 
 }

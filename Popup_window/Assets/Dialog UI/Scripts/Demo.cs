@@ -16,8 +16,9 @@ public class Demo : MonoBehaviour
             .SetMessage(message)
             .OnClose(() => Debug.Log("Closed"))
             .Show();   
-    }
 
+        
+    }
 
    
 }
